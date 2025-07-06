@@ -1,7 +1,5 @@
 /*
- * Conversion CLI tool:
- * 	octal, decimal and hexadecimal to binary
- * 	binary, octal and hexadecimal to decimal
+ * KOnversão BináRiA
  */
 
 #include <stdio.h>
@@ -9,11 +7,11 @@
 
 #define MAX 1000
 
-int atoi(char s[]);
+int api(char s[]);
 int btoi(char s[]);
 int htoi(char s[]);
 int otoi(char s[]);
-void toBin(char bin[], int decimal);
+void paraBin(char bin[], int decimal);
 void invStr(char str[]);
 void getNumber();
 
@@ -36,8 +34,8 @@ int main()
 
 		// input ##############################################
 		op = getchar();
-		// if next is newline you can go
-		// if not clean buffer and reset op
+		// se próximo for newline podes ir
+		// se não limpa buffer e faz reset a op
 		if(getchar() != '\n'){
 			op = 0;
 			while(getchar() != '\n'){}
@@ -46,18 +44,18 @@ int main()
 		switch(op){
 			case '1':
 				getNumber(number);
-				toBin(bin,otoi(number));
+				paraBin(bin,otoi(number));
 				printf("Binary: %s\n", bin);
 				break;
 			case '2':
 				getNumber(number);
-				dec = atoi(number);
-				toBin(bin,dec);
+				dec = api(number);
+				paraBin(bin,dec);
 				printf("Binary: %s\n", bin);
 				break;
 			case '3':
 				getNumber(number);
-				toBin(bin,htoi(number));
+				paraBin(bin,htoi(number));
 				printf("Binary: %s\n", bin);
 				break;
 			case '4':
@@ -80,7 +78,7 @@ int main()
 	return 0;
 }
 
-// binary string to integer
+// Converte string binária para inteiro
 int btoi(char s[])
 {
 	int i, n;
@@ -91,13 +89,13 @@ int btoi(char s[])
 	return n;
 }
 
-// octal string into integer
+// Conver string octal para inteiro
 int otoi(char s[])
 {
 	int i, n;
 	n = i = 0;
 
-	// deal with optional 0 at start of string
+	// lidar com 0 opcional no início da string
 	if(s[0] == '0')
 		i++;
 
@@ -106,8 +104,8 @@ int otoi(char s[])
 	return n;
 }
 
-// decimal string into integer
-int atoi(char s[])
+// converte string decimal para inteiro
+int api(char s[])
 {
 	int i, n;
 
@@ -117,7 +115,7 @@ int atoi(char s[])
 	return n;
 }
 
-// hexa string into integer
+// converte string hexadecimal para inteiro
 int htoi(char s[])
 {
 	int i , n;
@@ -146,8 +144,8 @@ int htoi(char s[])
 	return n;
 }
 
-// turns decimal integer to binary string
-void toBin(char bin[], int decimal){
+// converte inteiro decimal para string binária
+void paraBin(char bin[], int decimal){
 	
 	int r;
 	int i = 0;
@@ -162,7 +160,7 @@ void toBin(char bin[], int decimal){
 	invStr(bin);
 }
 
-// invert string
+// inverte string
 void invStr(char str[]){
 	int i;
 	int j = strlen(str) - 1;
@@ -174,7 +172,7 @@ void invStr(char str[]){
 	}				
 }
 
-// receives numeric string from user
+// recebe string numérica
 void getNumber(char n[])
 {
 	printf("Enter number:");
